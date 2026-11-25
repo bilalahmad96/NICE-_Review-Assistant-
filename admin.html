@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Portal - NICE Computer Education | School of Coding, Yavatmal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="icon" type="image/jpeg" href="assets/original-logo.jpg">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              900: '#064e3b',
+              950: '#022c22'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-100 min-h-screen text-slate-800 font-sans">
+
+  <!-- LOGIN SCREEN (Visible when not authenticated) -->
+  <div id="loginSection" class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white max-w-md w-full rounded-2xl shadow-xl p-8 border border-slate-200">
+      
+      <div class="text-center mb-6 select-none">
+        <!-- Official Logo Image -->
+        <div class="flex justify-center mb-3">
+          <img src="assets/original-logo.jpg" alt="NICE Computer Education" class="h-16 w-16 object-cover rounded-2xl shadow-md border border-emerald-100">
+        </div>
+        <div class="flex items-baseline justify-center gap-1.5 leading-tight">
+          <span class="brand-nice-arial text-xl sm:text-2xl text-[#064E3B]">NICE</span>
+          <span class="brand-secondary-font text-sm sm:text-base text-slate-800 uppercase">COMPUTER EDUCATION</span>
+        </div>
+        <div class="brand-tagline-font text-[10px] sm:text-[11px] text-emerald-700 uppercase mt-1">
+          SCHOOL OF CODING • YAVATMAL
+        </div>
+        <h1 class="text-xl font-black text-slate-900 mt-3">Director &amp; Staff Admin Portal</h1>
+        <p class="text-xs text-slate-500 mt-1">Review Analytics &amp; Student Feedback Dashboard</p>
+      </div>
+
+      <div id="loginError" class="hidden mb-4 p-3 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-xl font-medium"></div>
+
+      <form id="loginForm" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Username</label>
+          <input type="text" id="usernameInput" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="Enter admin username">
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
+          <input type="password" id="passwordInput" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="••••••••••••">
+        </div>
+
+        <button type="submit" class="brand-button-primary w-full py-3.5 rounded-xl font-bold text-sm transition">
+          Secure Login 🔒
+        </button>
+      </form>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 text-center text-[11px] text-slate-400">
+        NICE Computer Education • Authorized Staff Access Only
+      </div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION (Visible when authenticated) -->
+  <div id="dashboardSection" class="hidden min-h-screen pb-12">
+    
+    <!-- Top Admin Bar -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-4">
+        
+        <div class="flex items-center gap-3 select-none">
+          <img src="assets/original-logo.jpg" alt="NICE Computer Education" class="h-10 w-10 object-cover rounded-xl shadow-xs border border-emerald-100">
+          <div class="flex flex-col justify-center leading-none">
+            <div class="flex items-baseline gap-1.5 leading-tight">
+              <span class="brand-nice-arial text-base sm:text-lg text-[#064E3B]">NICE</span>
+              <span class="brand-secondary-font text-xs text-slate-800 uppercase">COMPUTER EDUCATION</span>
+            </div>
+            <div class="brand-tagline-font text-[9px] text-emerald-700 uppercase mt-0.5">
+              SCHOOL OF CODING • YAVATMAL
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <!-- Session Badge -->
+          <div id="activeSessionsBadge" class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded-full text-xs font-semibold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="sessionCountText">1 Active Login</span>
+          </div>
+
+          <!-- Clear Records Action Button -->
+          <button id="clearRecordsBtn" class="px-3 py-2 bg-rose-50 hover:bg-rose-100 text-rose-700 rounded-xl text-xs font-semibold border border-rose-200 transition flex items-center gap-1.5" title="Clear all recorded reviews">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            <span>Clear Logs</span>
+          </button>
+
+          <!-- Excel Export Button -->
+          <button id="exportExcelBtn" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <span>📥 Export to Excel</span>
+          </button>
+
+          <!-- Back to Student View -->
+          <a href="index.html" target="_blank" class="px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold border border-slate-200 transition flex items-center gap-1">
+            <span>Student App</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+            </svg>
+          </a>
+
+          <!-- Logout Button -->
+          <button id="logoutBtn" class="px-3 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-semibold transition">
+            Logout
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main Dashboard Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 pt-6">
+      
+      <!-- Top Metrics 4-Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+        
+        <div class="brand-card p-5">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Total Student Reviews</div>
+          <div class="text-2xl font-black text-slate-900" id="statTotalReviews">0</div>
+          <div class="text-[11px] text-emerald-600 font-semibold mt-1">All-time recorded sessions</div>
+        </div>
+
+        <div class="brand-card p-5">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">5★ &amp; 4★ Google Reviews</div>
+          <div class="text-2xl font-black text-emerald-600" id="statGoogleReviews">0</div>
+          <div class="text-[11px] text-slate-500 mt-1">Redirected to Google Maps</div>
+        </div>
+
+        <div class="brand-card p-5">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Grievances Shielded (1-3★)</div>
+          <div class="text-2xl font-black text-amber-600" id="statGrievances">0</div>
+          <div class="text-[11px] text-slate-500 mt-1">Protected from public view</div>
+        </div>
+
+        <div class="brand-card p-5">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1">Average Satisfaction Score</div>
+          <div class="text-2xl font-black text-yellow-500" id="statAvgRating">5.0 ★</div>
+          <div class="text-[11px] text-slate-500 mt-1">Student feedback average</div>
+        </div>
+
+      </div>
+
+      <!-- Filters & Search Toolbar -->
+      <div class="brand-card p-4 sm:p-5 mb-6">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3 w-full sm:w-auto">
+            <input type="text" id="searchInput" placeholder="Search student name, course or keyword..." class="w-full sm:w-72 px-3.5 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50">
+            <select id="filterRatingSelect" class="px-3 py-2 text-xs border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 bg-slate-50">
+              <option value="all">All Ratings</option>
+              <option value="5">5 Stars ⭐⭐⭐⭐⭐</option>
+              <option value="4">4 Stars ⭐⭐⭐⭐</option>
+              <option value="grievances">Grievances (1-3★)</option>
+            </select>
+          </div>
+          <div class="text-xs text-slate-500 font-medium">
+            Showing <span id="recordCount" class="font-bold text-slate-800">0</span> records
+          </div>
+        </div>
+      </div>
+
+      <!-- Reviews Table Card -->
+      <div class="brand-card overflow-hidden">
+        <div class="p-4 sm:p-5 border-b border-slate-200 flex justify-between items-center">
+          <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider">Student Feedback &amp; Review Logs</h2>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 border-b border-slate-200 text-slate-500 uppercase tracking-wider text-[11px]">
+              <tr>
+                <th class="p-3.5 pl-5">Date &amp; Time</th>
+                <th class="p-3.5">Student / Mode</th>
+                <th class="p-3.5">Course</th>
+                <th class="p-3.5">Rating</th>
+                <th class="p-3.5">Status</th>
+                <th class="p-3.5 pr-5">Review Note / Grievance</th>
+              </tr>
+            </thead>
+            <tbody id="reviewsTableBody" class="divide-y divide-slate-100">
+              <!-- Dynamically injected -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="admin.js?v=2.0"></script>
+</body>
+</html>

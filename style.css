@@ -1,0 +1,241 @@
+/* NICE Computer Education - School of Coding Theme */
+/* 10x Professional Architectural Styling */
+:root {
+  --primary-green: #059669;
+  --primary-dark: #064e3b;
+  --primary-light: #ecfdf5;
+  --primary-glow: rgba(5, 150, 105, 0.2);
+  --accent-mint: #10b981;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --bg-light: #f8fafc;
+  --card-bg: #ffffff;
+  --gold-star: #fbbf24;
+  --gold-star-active: #f59e0b;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Brand Typography Rules - Strict Client Specs: Only NICE in Arial Bold */
+.brand-nice-arial {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif !important;
+  font-weight: 900 !important;
+  letter-spacing: -0.01em;
+}
+
+.brand-secondary-font {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em;
+}
+
+.brand-tagline-font {
+  font-family: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.12em;
+}
+
+/* Glassmorphism & Card Styles */
+.brand-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-card:hover {
+  box-shadow: 0 6px 20px -3px rgba(5, 150, 105, 0.07);
+  border-color: #cbd5e1;
+}
+
+.brand-button-primary {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.28);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brand-button-primary:hover {
+  background: linear-gradient(135deg, #047857 0%, #064e3b 100%);
+  box-shadow: 0 6px 20px rgba(5, 150, 105, 0.38);
+  transform: translateY(-1px);
+}
+
+.brand-button-primary:active {
+  transform: translateY(1px);
+}
+
+/* Pulsing highlight for Google CTA button */
+@keyframes pulse-subtle {
+  0%, 100% {
+    box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
+  }
+  50% {
+    box-shadow: 0 6px 22px rgba(5, 150, 105, 0.55);
+  }
+}
+
+.pulse-cta {
+  animation: pulse-subtle 2.5s infinite;
+}
+
+/* Custom Chip Styles */
+.chip-btn {
+  border: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  color: #334155;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.chip-btn:hover {
+  border-color: #a7f3d0;
+  background-color: #f0fdf4;
+  color: #059669;
+}
+
+.chip-btn.active {
+  border-color: #059669;
+  background-color: #ecfdf5;
+  color: #065f46;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgba(5, 150, 105, 0.12);
+}
+
+/* Stream Selection Cards (Step 2) */
+.stream-card {
+  padding: 1rem 1.15rem;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  text-align: left;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  border: 1.5px solid #e2e8f0;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.stream-card .stream-icon {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 0.625rem;
+  background-color: #f1f5f9;
+  transition: all 0.2s ease;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stream-card .stream-title {
+  font-weight: 800;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  transition: color 0.2s ease;
+}
+
+.stream-card .stream-sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+}
+
+/* Inactive state: Crisp dark text on pure white card */
+.stream-card:not(.active) {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+.stream-card:not(.active) .stream-title {
+  color: #0f172a !important; /* deep slate black */
+}
+
+.stream-card:not(.active) .stream-sub {
+  color: #475569 !important; /* deep slate-600 - 100% visible and sharp on white */
+}
+
+.stream-card:hover:not(.active) {
+  border-color: #059669 !important;
+  background-color: #f0fdf4 !important;
+}
+
+/* Active state: Crisp white title & ultra-bright mint subtitle on emerald green */
+.stream-card.active {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  border-color: #047857 !important;
+  box-shadow: 0 4px 14px 0 rgba(5, 150, 105, 0.28);
+}
+
+.stream-card.active .stream-icon {
+  background-color: rgba(255, 255, 255, 0.22);
+}
+
+.stream-card.active .stream-title {
+  color: #ffffff !important; /* Pure brilliant white */
+}
+
+.stream-card.active .stream-sub {
+  color: #ecfdf5 !important; /* Ultra-bright mint - 100% visible and sharp on emerald */
+}
+
+/* Star rating interaction */
+.star-btn {
+  font-size: 2.25rem;
+  color: #cbd5e1;
+  transition: transform 0.15s ease, color 0.15s ease;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  border: none;
+  line-height: 1;
+}
+
+.star-btn.active {
+  color: var(--gold-star);
+  text-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+}
+
+.star-btn:hover {
+  transform: scale(1.15);
+}
+
+/* Custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Printable Standee Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  body {
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+}
