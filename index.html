@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/original-logo.jpg">
   <script>
     tailwind.config = {
@@ -37,42 +37,58 @@
 <body class="bg-[#f8fafc] min-h-screen text-slate-800 pb-16 font-sans antialiased">
 
   <!-- TOP INSTITUTIONAL BAR -->
-  <header class="bg-white border-b border-slate-200/80 sticky top-0 z-40 backdrop-blur-md bg-white/95">
-    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
+  <header class="top-institutional-bar">
+    <div class="header-inner-wrap">
       
       <!-- Brand & Easter Egg -->
-      <div class="flex items-center gap-3 cursor-pointer select-none" id="brandLogoClickable" title="NICE Computer Education - School of Coding (Tap 5x for Staff Admin)">
+      <div class="brand-lockup-container cursor-pointer" id="brandLogoClickable" title="NICE Computer Education - School of Coding (Tap 5x for Staff Admin)">
         <!-- Original Client Logo Image -->
-        <img src="assets/original-logo.jpg" alt="NICE Logo" class="h-11 w-11 sm:h-12 sm:w-12 rounded-xl object-cover shadow-sm border border-emerald-100">
+        <img src="assets/original-logo.jpg" alt="NICE Logo" class="brand-logo-img">
         
         <!-- Clean Executive Typography: Strict Client Rule - ONLY NICE in Arial Bold, rest in Plus Jakarta Sans -->
-        <div class="flex flex-col justify-center leading-none">
-          <div class="flex items-baseline gap-1.5 leading-tight">
-            <span class="brand-nice-arial text-lg sm:text-2xl text-[#064E3B]">NICE</span>
-            <span class="brand-secondary-font text-xs sm:text-base text-slate-800 uppercase">COMPUTER EDUCATION</span>
+        <div class="brand-text-block">
+          <div class="brand-title-row">
+            <span class="brand-nice-text">NICE</span>
+            <span class="brand-computer-edu-text">COMPUTER EDUCATION</span>
           </div>
-          <div class="flex items-center gap-1.5 brand-tagline-font text-[9px] sm:text-[10px] text-emerald-700 uppercase mt-0.5 sm:mt-1">
-            <span class="font-bold">SCHOOL OF CODING</span>
+          <div class="brand-tagline-text">
+            <span>SCHOOL OF CODING</span>
             <span class="text-slate-300">•</span>
             <span class="text-slate-500 font-semibold">YAVATMAL</span>
           </div>
         </div>
       </div>
 
-      <!-- Header Direct Contact Links -->
-      <div class="flex items-center gap-2 sm:gap-3">
-        <a href="tel:+919763717418" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-bold border border-emerald-200/80 transition shadow-2xs whitespace-nowrap">
-          <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"></path>
-          </svg>
-          <span class="hidden xs:inline">+91 97637 17418</span>
-          <span class="xs:hidden">Call</span>
-        </a>
-
-        <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-slate-100 text-slate-600 text-xs font-semibold border border-slate-200">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="hidden sm:inline">Verified Google Review</span>
+      <!-- Header Direct Contact Links (Both Directors with Equal Importance) -->
+      <div class="header-contacts-group">
+        <!-- Shailesh Sambhe Header Pill (Desktop/Tablet) -->
+        <div class="director-header-pill">
+          <span class="pill-name">Shailesh Sambhe:</span>
+          <a href="tel:+919767541889" class="pill-call" title="Call Shailesh Sambhe: +91 97675 41889">
+            <span>📞</span><span>9767541889</span>
+          </a>
+          <span class="pill-sep">|</span>
+          <a href="https://wa.me/919767541889?text=Hello%20Shailesh%20Sir,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="pill-wa" title="WhatsApp Shailesh Sambhe: +91 97675 41889">
+            <span>💬</span><span>WhatsApp</span>
+          </a>
         </div>
+
+        <!-- Namrata Sambhe Header Pill (Desktop/Tablet) -->
+        <div class="director-header-pill">
+          <span class="pill-name">Namrata Sambhe:</span>
+          <a href="tel:+919763717418" class="pill-call" title="Call Namrata Sambhe: +91 97637 17418">
+            <span>📞</span><span>9763717418</span>
+          </a>
+          <span class="pill-sep">|</span>
+          <a href="https://wa.me/919763717418?text=Hello%20Namrata%20Madam,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="pill-wa" title="WhatsApp Namrata Sambhe: +91 97637 17418">
+            <span>💬</span><span>WhatsApp</span>
+          </a>
+        </div>
+
+        <!-- Mobile Quick Contact Action (< sm) -->
+        <button type="button" onclick="document.getElementById('mobileContactModal').classList.remove('hidden')" class="mobile-contacts-trigger-btn" title="Direct Contact: Shailesh Sambhe & Namrata Sambhe">
+          <span>📞</span><span>Contacts</span>
+        </button>
       </div>
 
     </div>
@@ -128,13 +144,38 @@
           <div>
             <textarea id="grievanceText" rows="3" class="w-full p-3 border border-amber-300 rounded-xl bg-white text-xs text-slate-800 focus:outline-none focus:ring-2 focus:ring-amber-500" placeholder="Please describe what went wrong or how we can improve your training..."></textarea>
           </div>
-          <div class="flex flex-wrap gap-2.5 pt-1">
-            <a id="grievanceWhatsAppBtn" href="https://wa.me/919763717418?text=Hello%20Director,%20I%20have%20feedback%20regarding%20my%20course%20at%20NICE%20Computer%20Education" target="_blank" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 transition shadow-xs">
-              <span>💬 Message Director on WhatsApp</span>
-            </a>
-            <a href="tel:+919763717418" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-xs rounded-xl flex items-center gap-1.5 transition">
-              <span>📞 Call Director Directly</span>
-            </a>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
+            <!-- Shailesh Sambhe Direct Contact -->
+            <div class="bg-white border border-amber-200 rounded-xl p-2.5 shadow-2xs space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-extrabold text-xs text-slate-900">Shailesh Sambhe</span>
+                <span class="text-[10px] text-slate-500 font-medium">9767541889</span>
+              </div>
+              <div class="flex gap-2">
+                <a href="tel:+919767541889" class="flex-1 py-1.5 px-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-[11px] rounded-lg text-center flex items-center justify-center gap-1 transition">
+                  <span>📞 Call</span>
+                </a>
+                <a href="https://wa.me/919767541889?text=Hello%20Shailesh%20Sir,%20I%20have%20feedback%20regarding%20my%20course%20at%20NICE%20Computer%20Education" target="_blank" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg text-center flex items-center justify-center gap-1 transition shadow-2xs">
+                  <span>💬 WhatsApp</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Namrata Sambhe Direct Contact -->
+            <div class="bg-white border border-amber-200 rounded-xl p-2.5 shadow-2xs space-y-1.5">
+              <div class="flex items-center justify-between">
+                <span class="font-extrabold text-xs text-slate-900">Namrata Sambhe</span>
+                <span class="text-[10px] text-slate-500 font-medium">9763717418</span>
+              </div>
+              <div class="flex gap-2">
+                <a href="tel:+919763717418" class="flex-1 py-1.5 px-2 bg-slate-800 hover:bg-slate-900 text-white font-bold text-[11px] rounded-lg text-center flex items-center justify-center gap-1 transition">
+                  <span>📞 Call</span>
+                </a>
+                <a href="https://wa.me/919763717418?text=Hello%20Namrata%20Madam,%20I%20have%20feedback%20regarding%20my%20course%20at%20NICE%20Computer%20Education" target="_blank" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-[11px] rounded-lg text-center flex items-center justify-center gap-1 transition shadow-2xs">
+                  <span>💬 WhatsApp</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -170,14 +211,40 @@
       <!-- STEP 3: COURSE TRACK & SUBJECT SELECTION -->
       <div class="brand-card p-5 sm:p-6">
         <div class="text-[11px] font-extrabold uppercase tracking-wider text-slate-400 mb-2">Step 3 • Select Course Track &amp; Subject</div>
+        
+        <!-- SPECIFIC COURSE DIRECT SELECTION BAR -->
+        <div class="mb-5 bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 p-3.5 sm:p-4 rounded-2xl border-2 border-emerald-300 shadow-xs">
+          <label for="allCoursesSelect" class="block text-xs font-black text-slate-900 mb-1.5 flex items-center justify-between">
+            <span class="flex items-center gap-1.5 text-emerald-900">
+              <span class="text-base">🎯</span> <span>Specific Course Selection Bar:</span>
+            </span>
+            <span class="text-[10px] text-emerald-800 bg-white px-2.5 py-0.5 rounded-full font-extrabold border border-emerald-300 shadow-2xs">
+              16+ Courses Ready
+            </span>
+          </label>
+          <div class="relative">
+            <select id="allCoursesSelect" class="w-full p-3 pl-10 pr-10 bg-white border-2 border-emerald-500 rounded-xl text-xs sm:text-sm font-bold text-slate-900 shadow-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none transition appearance-none cursor-pointer">
+              <!-- Dynamically populated via app.js -->
+            </select>
+            <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-emerald-600 pointer-events-none text-base">
+              🎓
+            </div>
+            <div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-xs font-bold">
+              ▼
+            </div>
+          </div>
+          <p class="text-[11px] text-slate-600 mt-1.5">
+            Select your exact course directly from the dropdown above, or browse through the category cards below.
+          </p>
+        </div>
+
         <p id="coursePrompt" class="text-xs font-semibold text-slate-700 mb-3">Which coding or programming course did you join?</p>
         
         <!-- Track Chips (Pre-rendered for Instant Display) -->
-        <div id="trackSelectorContainer" class="grid grid-cols-2 sm:grid-cols-4 gap-2 mb-4">
+        <div id="trackSelectorContainer" class="grid grid-cols-2 sm:grid-cols-3 gap-2 mb-4">
           <button class="chip-btn track-chip active p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="C &amp; C++ Programming">C &amp; C++ Programming</button>
-          <button class="chip-btn track-chip p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="Java Technologies">Java Technologies</button>
-          <button class="chip-btn track-chip p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="Python &amp; AI">Python &amp; AI</button>
-          <button class="chip-btn track-chip p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="Web &amp; PHP Development">Web &amp; PHP Development</button>
+          <button class="chip-btn track-chip p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="Java &amp; Android Development">Java &amp; Android Development</button>
+          <button class="chip-btn track-chip p-2.5 sm:p-3 rounded-xl font-bold text-xs sm:text-sm text-center" data-track="Python &amp; AI Technologies">Python &amp; AI Technologies</button>
         </div>
 
         <!-- Dynamic Course Chips (Pre-rendered for Instant Display) -->
@@ -423,31 +490,64 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mt-8 transition hover:shadow-md">
       
       <!-- Top Header Strip -->
-      <div class="p-5 sm:p-6 bg-slate-50/60 border-b border-slate-200/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div class="institute-branding-footer-row">
         
         <!-- Institute Branding with Original Logo -->
-        <div class="flex items-center gap-3.5">
-          <img src="assets/original-logo.jpg" alt="NICE Logo" class="h-12 w-12 sm:h-14 sm:w-14 rounded-xl object-cover shadow-sm border border-emerald-100">
-          <div class="flex flex-col justify-center leading-none">
-            <div class="flex items-baseline gap-1.5 leading-tight">
-              <span class="brand-nice-arial text-lg sm:text-2xl text-[#064E3B]">NICE</span>
-              <span class="brand-secondary-font text-xs sm:text-base text-slate-800 uppercase">COMPUTER EDUCATION</span>
+        <div class="brand-lockup-container">
+          <img src="assets/original-logo.jpg" alt="NICE Logo" class="brand-logo-img" style="width: 50px; height: 50px; border-radius: 14px;">
+          <div class="brand-text-block">
+            <div class="brand-title-row">
+              <span class="brand-nice-text" style="font-size: 24px;">NICE</span>
+              <span class="brand-computer-edu-text" style="font-size: 13px;">COMPUTER EDUCATION</span>
             </div>
-            <div class="flex items-center gap-1.5 brand-tagline-font text-[9px] sm:text-[10px] text-emerald-700 uppercase mt-0.5 sm:mt-1">
-              <span class="font-bold">SCHOOL OF CODING</span>
+            <div class="brand-tagline-text">
+              <span>SCHOOL OF CODING</span>
               <span class="text-slate-300">•</span>
               <span class="text-slate-500 font-semibold">WADGAON, YAVATMAL</span>
             </div>
           </div>
         </div>
 
-        <!-- Phone Call Quick Action -->
-        <a href="tel:+919763717418" class="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm shadow-xs transition w-full md:w-auto justify-center whitespace-nowrap">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z"></path>
-          </svg>
-          <span>Call: +91 97637 17418</span>
-        </a>
+        <!-- Phone Call & WhatsApp Quick Action Cards (Both with Equal Importance) -->
+        <div class="contact-cards-grid">
+          <!-- Shailesh Sambhe Card -->
+          <div class="contact-card-box">
+            <div class="contact-card-header">
+              <div class="contact-avatar">SS</div>
+              <div class="contact-details">
+                <div class="contact-name">Shailesh Sambhe</div>
+                <div class="contact-phone-num">+91 97675 41889</div>
+              </div>
+            </div>
+            <div class="contact-actions-row">
+              <a href="tel:+919767541889" class="btn-contact-action" title="Call Shailesh Sambhe: +91 97675 41889">
+                <span>📞</span><span>Call</span>
+              </a>
+              <a href="https://wa.me/919767541889?text=Hello%20Shailesh%20Sir,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="btn-contact-action wa-btn" title="WhatsApp Shailesh Sambhe">
+                <span>💬</span><span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Namrata Sambhe Card -->
+          <div class="contact-card-box">
+            <div class="contact-card-header">
+              <div class="contact-avatar">NS</div>
+              <div class="contact-details">
+                <div class="contact-name">Namrata Sambhe</div>
+                <div class="contact-phone-num">+91 97637 17418</div>
+              </div>
+            </div>
+            <div class="contact-actions-row">
+              <a href="tel:+919763717418" class="btn-contact-action" title="Call Namrata Sambhe: +91 97637 17418">
+                <span>📞</span><span>Call</span>
+              </a>
+              <a href="https://wa.me/919763717418?text=Hello%20Namrata%20Madam,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="btn-contact-action wa-btn" title="WhatsApp Namrata Sambhe">
+                <span>💬</span><span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+        </div>
 
       </div>
 
@@ -459,7 +559,7 @@
           <span class="text-base text-rose-500 shrink-0 mt-0.5">📍</span>
           <div>
             <div class="font-bold text-slate-900 mb-0.5">Location &amp; Campus Address</div>
-            <p class="leading-relaxed">Plot No. 45, Bharathi Layout, Near Darda Nagar, Wadgaon, Yavatmal – 445002</p>
+            <p class="leading-relaxed">Plot No. 45, Bharathi Layout, Near Darda Nagar, Wadgaon, Yavatmal – 445001</p>
           </div>
         </div>
 
@@ -485,7 +585,7 @@
           <a href="https://maps.app.goo.gl/3Vf5Vw4qnXcjUoPy5" target="_blank" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs flex items-center justify-center gap-1.5 transition border border-slate-200">
             <span>📍 Google Maps</span>
           </a>
-          <a href="https://wa.me/919763717418?text=Hello%20NICE%20Computer%20Education,%20I%20have%20an%20inquiry%20about%20your%20courses" target="_blank" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center gap-1.5 transition border border-emerald-200/80">
+          <a href="https://wa.me/919767541889?text=Hello%20NICE%20Computer%20Education,%20I%20have%20an%20inquiry%20about%20your%20courses" target="_blank" class="flex-1 sm:flex-none px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center gap-1.5 transition border border-emerald-200/80">
             <span>💬 WhatsApp</span>
           </a>
           <a href="https://g.page/r/CTKrEmKbJP-dEBM/review" target="_blank" class="flex-1 sm:flex-none px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 transition shadow-2xs">
@@ -544,6 +644,63 @@
     </div>
   </div>
 
+  <!-- MOBILE DIRECT CONTACT MODAL (< sm screens) -->
+  <div id="mobileContactModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs">
+    <div class="bg-white rounded-2xl max-w-sm w-full p-5 shadow-2xl border border-slate-100 space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <span class="text-lg">📞</span>
+          <h3 class="font-bold text-slate-900 text-sm">Direct Institute Contacts</h3>
+        </div>
+        <button type="button" onclick="document.getElementById('mobileContactModal').classList.add('hidden')" class="p-1 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Shailesh Sambhe Card -->
+      <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
+        <div class="flex items-center gap-2.5">
+          <div class="contact-avatar">SS</div>
+          <div class="min-w-0">
+            <div class="font-bold text-xs text-slate-900">Shailesh Sambhe</div>
+            <div class="text-[11px] font-semibold text-slate-500">+91 97675 41889</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <a href="tel:+919767541889" class="py-1.5 px-2 bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-200 font-bold text-xs rounded-lg flex items-center justify-center gap-1 transition shadow-2xs">
+            <span>📞 Call</span>
+          </a>
+          <a href="https://wa.me/919767541889?text=Hello%20Shailesh%20Sir,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="py-1.5 px-2 bg-emerald-50 hover:bg-[#25D366] text-emerald-800 hover:text-white border border-emerald-200 font-bold text-xs rounded-lg flex items-center justify-center gap-1 transition shadow-2xs">
+            <span>💬 WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Namrata Sambhe Card -->
+      <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200/90 space-y-2">
+        <div class="flex items-center gap-2.5">
+          <div class="contact-avatar">NS</div>
+          <div class="min-w-0">
+            <div class="font-bold text-xs text-slate-900">Namrata Sambhe</div>
+            <div class="text-[11px] font-semibold text-slate-500">+91 97637 17418</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2 pt-1">
+          <a href="tel:+919763717418" class="py-1.5 px-2 bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-200 font-bold text-xs rounded-lg flex items-center justify-center gap-1 transition shadow-2xs">
+            <span>📞 Call</span>
+          </a>
+          <a href="https://wa.me/919763717418?text=Hello%20Namrata%20Madam,%20I%20have%20an%20inquiry%20about%20courses%20at%20NICE%20Computer%20Education" target="_blank" class="py-1.5 px-2 bg-emerald-50 hover:bg-[#25D366] text-emerald-800 hover:text-white border border-emerald-200 font-bold text-xs rounded-lg flex items-center justify-center gap-1 transition shadow-2xs">
+            <span>💬 WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <button type="button" onclick="document.getElementById('mobileContactModal').classList.add('hidden')" class="w-full py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs rounded-xl transition">
+        Close
+      </button>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICATION -->
   <div id="toastNotification" class="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-4 py-2.5 rounded-xl text-xs font-semibold shadow-xl border border-slate-700 flex items-center gap-2 opacity-0 pointer-events-none transition-all duration-300">
     <span class="text-emerald-400">✓</span>
@@ -559,7 +716,7 @@
       <span>•</span>
       <a href="admin.html" class="hover:text-emerald-700 transition font-medium">🔒 Staff Admin Portal</a>
     </div>
-    <p>© NICE Computer Education – School of Coding • Wadgaon, Yavatmal – 445002</p>
+    <p>© NICE Computer Education – School of Coding • Wadgaon, Yavatmal – 445001</p>
   </footer>
 
   <script src="app.js?v=7.0"></script>

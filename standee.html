@@ -7,7 +7,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;600;700;800&family=Noto+Sans+Devanagari:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/original-logo.jpg">
   <style>
     body {
@@ -57,17 +57,19 @@
     <div class="p-6">
       
       <!-- Brand Logo -->
-      <div class="flex justify-center items-center gap-3.5 mb-4">
-        <img src="assets/original-logo.jpg" alt="NICE Logo" class="h-14 w-14 object-cover rounded-2xl shadow-sm border border-emerald-200">
-        <div class="flex flex-col text-left leading-none">
-          <div class="flex items-baseline gap-1.5 leading-tight">
-            <span class="brand-nice-arial text-xl sm:text-2xl text-[#064E3B]">NICE</span>
-            <span class="brand-secondary-font text-sm sm:text-base text-slate-800 uppercase">COMPUTER EDUCATION</span>
-          </div>
-          <div class="flex items-center gap-1.5 brand-tagline-font text-[10px] sm:text-[11px] text-emerald-700 uppercase mt-1">
-            <span class="font-bold">SCHOOL OF CODING</span>
-            <span class="text-slate-300">•</span>
-            <span class="text-slate-500 font-semibold">YAVATMAL</span>
+      <div class="flex justify-center mb-4">
+        <div class="brand-lockup-container">
+          <img src="assets/original-logo.jpg" alt="NICE Logo" class="brand-logo-img" style="width: 50px; height: 50px; border-radius: 14px;">
+          <div class="brand-text-block text-left">
+            <div class="brand-title-row">
+              <span class="brand-nice-text" style="font-size: 24px;">NICE</span>
+              <span class="brand-computer-edu-text" style="font-size: 13px;">COMPUTER EDUCATION</span>
+            </div>
+            <div class="brand-tagline-text">
+              <span>SCHOOL OF CODING</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-slate-500 font-semibold">YAVATMAL</span>
+            </div>
           </div>
         </div>
       </div>
@@ -114,8 +116,8 @@
       <!-- Institute Details -->
       <div class="text-[11px] text-slate-600 border-t border-slate-200 pt-3 space-y-1">
         <p class="font-bold text-slate-900">NICE Computer Education – School of Coding</p>
-        <p>📍 Plot No. 45, Bharathi Layout, Near Darda Nagar, Wadgaon, Yavatmal – 445002</p>
-        <p class="font-semibold text-emerald-700">📞 +91 97637 17418 / 08793480530</p>
+        <p>📍 Plot No. 45, Bharathi Layout, Near Darda Nagar, Wadgaon, Yavatmal – 445001</p>
+        <p class="font-semibold text-emerald-700">📞 Shailesh Sambhe: +91 97675 41889 &nbsp;|&nbsp; Namrata Sambhe: +91 97637 17418 (Call &amp; WhatsApp)</p>
       </div>
 
     </div>
@@ -123,8 +125,8 @@
   </div>
 
   <script>
-    // Generate QR Code targeting the Google Review URL or live software URL
-    const targetUrl = 'https://g.page/r/CTKrEmKbJP-dEBM/review';
+    // Generate QR Code targeting the official live software URL on Vercel
+    const targetUrl = 'https://nicegoooglereview.vercel.app';
     new QRCode(document.getElementById('standeeQr'), {
       text: targetUrl,
       width: 170,

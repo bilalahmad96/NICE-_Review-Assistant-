@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <link rel="stylesheet" href="style.css">
   <link rel="icon" type="image/jpeg" href="assets/original-logo.jpg">
   <script>
     tailwind.config = {
@@ -40,14 +40,16 @@
       <div class="text-center mb-6 select-none">
         <!-- Official Logo Image -->
         <div class="flex justify-center mb-3">
-          <img src="assets/original-logo.jpg" alt="NICE Computer Education" class="h-16 w-16 object-cover rounded-2xl shadow-md border border-emerald-100">
+          <img src="assets/original-logo.jpg" alt="NICE Computer Education" style="width: 64px; height: 64px;" class="h-16 w-16 object-cover rounded-2xl shadow-md border border-emerald-100">
         </div>
-        <div class="flex items-baseline justify-center gap-1.5 leading-tight">
-          <span class="brand-nice-arial text-xl sm:text-2xl text-[#064E3B]">NICE</span>
-          <span class="brand-secondary-font text-sm sm:text-base text-slate-800 uppercase">COMPUTER EDUCATION</span>
+        <div class="flex items-baseline justify-center gap-2 whitespace-nowrap">
+          <span class="brand-nice-text text-2xl sm:text-3xl">NICE</span>
+          <span class="brand-computer-edu-text text-xs sm:text-sm">COMPUTER EDUCATION</span>
         </div>
-        <div class="brand-tagline-font text-[10px] sm:text-[11px] text-emerald-700 uppercase mt-1">
-          SCHOOL OF CODING • YAVATMAL
+        <div class="brand-tagline-text justify-center text-[10px] sm:text-[11px] text-emerald-700 mt-1">
+          <span>SCHOOL OF CODING</span>
+          <span class="text-slate-300">•</span>
+          <span class="text-slate-500 font-semibold">YAVATMAL</span>
         </div>
         <h1 class="text-xl font-black text-slate-900 mt-3">Director &amp; Staff Admin Portal</h1>
         <p class="text-xs text-slate-500 mt-1">Review Analytics &amp; Student Feedback Dashboard</p>
@@ -64,6 +66,15 @@
         <div>
           <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Password</label>
           <input type="password" id="passwordInput" required class="w-full p-3 border border-slate-300 rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 focus:outline-none" placeholder="••••••••••••">
+        </div>
+
+        <!-- Stay Logged In Toggle Option -->
+        <div class="flex items-center justify-between text-xs py-1">
+          <label class="flex items-center gap-2.5 cursor-pointer select-none text-slate-700 font-semibold hover:text-emerald-800 transition">
+            <input type="checkbox" id="stayLoggedInCheckbox" checked class="w-4 h-4 text-emerald-600 border-slate-300 rounded focus:ring-emerald-500 accent-emerald-600 cursor-pointer">
+            <span>Stay logged in on this device</span>
+          </label>
+          <span class="text-[11px] text-slate-400 font-medium">Remember me</span>
         </div>
 
         <button type="submit" class="brand-button-primary w-full py-3.5 rounded-xl font-bold text-sm transition">
@@ -84,15 +95,17 @@
     <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap justify-between items-center gap-4">
         
-        <div class="flex items-center gap-3 select-none">
-          <img src="assets/original-logo.jpg" alt="NICE Computer Education" class="h-10 w-10 object-cover rounded-xl shadow-xs border border-emerald-100">
-          <div class="flex flex-col justify-center leading-none">
-            <div class="flex items-baseline gap-1.5 leading-tight">
-              <span class="brand-nice-arial text-base sm:text-lg text-[#064E3B]">NICE</span>
-              <span class="brand-secondary-font text-xs text-slate-800 uppercase">COMPUTER EDUCATION</span>
+        <div class="brand-lockup-container">
+          <img src="assets/original-logo.jpg" alt="NICE Computer Education" class="brand-logo-img" style="width: 40px; height: 40px;">
+          <div class="brand-text-block">
+            <div class="brand-title-row">
+              <span class="brand-nice-text" style="font-size: 19px;">NICE</span>
+              <span class="brand-computer-edu-text" style="font-size: 11px;">COMPUTER EDUCATION</span>
             </div>
-            <div class="brand-tagline-font text-[9px] text-emerald-700 uppercase mt-0.5">
-              SCHOOL OF CODING • YAVATMAL
+            <div class="brand-tagline-text" style="font-size: 8.5px; margin-top: 3px;">
+              <span>SCHOOL OF CODING</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-slate-500 font-semibold">YAVATMAL</span>
             </div>
           </div>
         </div>
@@ -116,6 +129,14 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
             </svg>
             <span>📥 Export to Excel</span>
+          </button>
+
+          <!-- QR Standee Master Modal Button -->
+          <button onclick="openStandeeModal()" class="px-3.5 py-2 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow flex items-center gap-1.5 transition" title="View &amp; Print Tabletop QR Standee">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+            </svg>
+            <span>🖨️ QR Standee</span>
           </button>
 
           <!-- Back to Student View -->
@@ -167,6 +188,30 @@
 
       </div>
 
+      <!-- QR Standee Quick Action Banner -->
+      <div class="bg-gradient-to-r from-emerald-950 via-emerald-900 to-slate-900 rounded-2xl p-4 sm:p-5 text-white mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-md border border-emerald-700/40">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-2xl border border-white/10 shrink-0">
+            🖨️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="font-bold text-sm sm:text-base text-white">Google Review Acrylic Standee (1400×2000 HD)</h3>
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-400 text-slate-950 uppercase">Print-Ready</span>
+            </div>
+            <p class="text-xs text-emerald-100/80 mt-0.5">High-resolution 2D master artwork for front desk, reception, and computer lab counters.</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2.5 w-full sm:w-auto shrink-0">
+          <button onclick="openStandeeModal()" class="px-4 py-2 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl transition shadow-xs flex items-center justify-center gap-1.5 flex-1 sm:flex-initial">
+            <span>👁️ View &amp; Print Standee</span>
+          </button>
+          <a href="standee-master.html" target="_blank" class="px-3.5 py-2 bg-white/10 hover:bg-white/20 text-white font-semibold text-xs rounded-xl border border-white/20 transition flex items-center justify-center gap-1 flex-1 sm:flex-initial">
+            <span>Fullscreen ↗</span>
+          </a>
+        </div>
+      </div>
+
       <!-- Filters & Search Toolbar -->
       <div class="brand-card p-4 sm:p-5 mb-6">
         <div class="flex flex-wrap items-center justify-between gap-3">
@@ -214,6 +259,82 @@
 
   </div>
 
-  <script src="admin.js?v=2.0"></script>
+  <!-- STANDEE PREVIEW & PRINT MODAL -->
+  <div id="standeeModal" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-3 sm:p-5">
+    <div class="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full border border-slate-200 overflow-hidden my-auto max-h-[94vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="p-4 sm:p-5 bg-slate-50 border-b border-slate-200 flex items-center justify-between shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl shrink-0">
+            🖨️
+          </div>
+          <div>
+            <h3 class="text-base sm:text-lg font-black text-slate-900 leading-tight">Master Google Review Standee Artwork</h3>
+            <p class="text-xs text-slate-500">Flat 2D Master Design • 1400×2000 px HD • A4/A5 Print-Ready (300 DPI)</p>
+          </div>
+        </div>
+        <button onclick="closeStandeeModal()" class="w-9 h-9 rounded-xl hover:bg-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center transition text-lg font-bold" title="Close (Esc)">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Body (Split Preview & Controls) -->
+      <div class="p-5 sm:p-6 overflow-y-auto flex-1 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+        
+        <!-- Left: Standee Image Artwork Preview -->
+        <div class="md:col-span-6 flex justify-center bg-slate-100 p-4 rounded-2xl border border-slate-200">
+          <img src="standee-master-1400x2000.png" alt="Google Review Standee Preview" class="max-h-[52vh] sm:max-h-[60vh] w-auto object-contain rounded-xl shadow-lg border-2 border-white">
+        </div>
+
+        <!-- Right: Print & Production Details -->
+        <div class="md:col-span-6 space-y-4">
+          
+          <div class="space-y-1">
+            <span class="inline-block px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase bg-emerald-100 text-emerald-800">Verified Print Specifications</span>
+            <h4 class="text-lg font-black text-slate-900 leading-snug">Countertop Acrylic &amp; Tent Card Master</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Yeh direct 2D flat artwork hai jo seedha printer, photo press, ya acrylic tabletop standee frame (A4/A5 ratio) ko print ke liye diya ja sakta hai.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 space-y-2 text-xs">
+            <div class="flex justify-between items-center text-slate-600">
+              <span class="font-medium">Resolution:</span>
+              <span class="font-bold text-slate-900">1400 × 2000 px (300 DPI)</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-600">
+              <span class="font-medium">Aspect Ratio:</span>
+              <span class="font-bold text-slate-900">A4 / A5 Vertical Portrait</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-600">
+              <span class="font-medium">Target URL:</span>
+              <span class="font-bold text-emerald-700 truncate max-w-[190px]" title="https://nicegoooglereview.vercel.app">nicegoooglereview.vercel.app</span>
+            </div>
+            <div class="flex justify-between items-center text-slate-600">
+              <span class="font-medium">Scannability:</span>
+              <span class="font-bold text-emerald-600 flex items-center gap-1">✓ 100% Tested &amp; Scannable</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="space-y-2.5 pt-2">
+            <a href="standee-master.html" target="_blank" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-xs font-bold shadow flex items-center justify-center gap-2 transition">
+              <span>🖨️ Open Fullscreen &amp; Print (A4/A5)</span>
+            </a>
+            
+            <a href="standee-master-1400x2000.png" download="NICE_Google_Review_Standee_1400x2000.png" class="w-full py-3 bg-slate-900 hover:bg-slate-800 text-white rounded-xl text-xs font-bold shadow flex items-center justify-center gap-2 transition">
+              <span>📥 Download Master Image (PNG 1400x2000)</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script src="admin.js?v=3.0"></script>
 </body>
 </html>

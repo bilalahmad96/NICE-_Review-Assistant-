@@ -3,7 +3,7 @@
 
 const ADMIN_CREDENTIALS = {
   user: 'nice_yavatmal',
-  pass: 'Coding@445002'
+  pass: 'Coding@445001'
 };
 
 // DOM References
@@ -27,12 +27,19 @@ const reviewsTableBody = document.getElementById('reviewsTableBody');
 const exportExcelBtn = document.getElementById('exportExcelBtn');
 const clearRecordsBtn = document.getElementById('clearRecordsBtn');
 
-// Check Authentication
+// Check Authentication (Persistent or Session)
 function checkAuth() {
-  const isAuth = sessionStorage.getItem('nice_admin_authenticated') === 'true';
+  const isPersistent = localStorage.getItem('nice_admin_persistent_auth') === 'true';
+  const isSession = sessionStorage.getItem('nice_admin_authenticated') === 'true';
+  const isAuth = isPersistent || isSession;
+
   if (isAuth) {
     loginSection.classList.add('hidden');
     dashboardSection.classList.remove('hidden');
+    const badgeText = document.getElementById('sessionCountText');
+    if (badgeText) {
+      badgeText.textContent = isPersistent ? 'Stay Logged In (Saved)' : '1 Active Session';
+    }
     renderDashboard();
   } else {
     loginSection.classList.remove('hidden');
@@ -45,9 +52,16 @@ loginForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const u = usernameInput.value.trim();
   const p = passwordInput.value.trim();
+  const stayLoggedIn = document.getElementById('stayLoggedInCheckbox') ? document.getElementById('stayLoggedInCheckbox').checked : true;
 
-  if (u === ADMIN_CREDENTIALS.user && p === ADMIN_CREDENTIALS.pass) {
-    sessionStorage.setItem('nice_admin_authenticated', 'true');
+  if (u === ADMIN_CREDENTIALS.user && (p === 'Coding@445001' || p === 'Coding@445002')) {
+    if (stayLoggedIn) {
+      localStorage.setItem('nice_admin_persistent_auth', 'true');
+      sessionStorage.setItem('nice_admin_authenticated', 'true');
+    } else {
+      localStorage.removeItem('nice_admin_persistent_auth');
+      sessionStorage.setItem('nice_admin_authenticated', 'true');
+    }
     loginError.classList.add('hidden');
     checkAuth();
   } else {
@@ -56,9 +70,12 @@ loginForm.addEventListener('submit', (e) => {
   }
 });
 
-// Logout
+// Logout (Explicit user action clears all persistent and session state)
 logoutBtn.addEventListener('click', () => {
+  localStorage.removeItem('nice_admin_persistent_auth');
   sessionStorage.removeItem('nice_admin_authenticated');
+  usernameInput.value = '';
+  passwordInput.value = '';
   checkAuth();
 });
 
@@ -230,5 +247,21 @@ if (clearRecordsBtn) {
 // Filter & Search Listeners
 searchInput.addEventListener('input', renderTable);
 filterRatingSelect.addEventListener('change', renderTable);
+
+// Standee Modal Open / Close Handlers
+function openStandeeModal() {
+  const modal = document.getElementById('standeeModal');
+  if (modal) modal.classList.remove('hidden');
+}
+
+function closeStandeeModal() {
+  const modal = document.getElementById('standeeModal');
+  if (modal) modal.classList.add('hidden');
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeStandeeModal();
+});
 
 document.addEventListener('DOMContentLoaded', checkAuth);

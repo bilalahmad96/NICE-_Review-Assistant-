@@ -12,38 +12,48 @@ const COURSE_CATALOG = {
       'C Programming',
       'C++ Programming'
     ],
-    'Java Technologies': [
-      'Core Java Programming (J2SE)',
-      'Advanced Java (J2EE)'
+    'Java & Android Development': [
+      'Core Java Programming',
+      'Advanced Java Programming',
+      'Android App Development'
     ],
-    'Python & AI': [
+    'Python & AI Technologies': [
       'Python Programming',
       'Python & AI Basics'
     ],
-    'Web & PHP Development': [
-      'Web Development',
-      'PHP Programming',
-      'ASP.NET & VB.NET'
+    'Web Development & Scripting': [
+      'Basic Web Designing',
+      'Advanced Web Designing',
+      'JavaScript',
+      'PHP Programming'
+    ],
+    '.NET Technologies': [
+      'C#.NET',
+      'ASP.NET',
+      'VB.NET'
+    ],
+    'Diploma Programs': [
+      'Diploma in Information Technology'
     ]
   },
   professional: {
-    'Accounting & Tally': [
+    'Office & Internet Skills': [
+      'Ms office & Internet',
+      'Advanced Excel & MIS Reports',
+      'MS-CIT Certification',
+      'Computer Fundamentals & Typing'
+    ],
+    'Hardware & Troubleshooting': [
+      'Hardware & Trouble Shooting',
+      'Hardware & Networking',
+      'Computer Aided Design (CAD)'
+    ],
+    'Accounting & Taxation': [
       'Tally Prime with GST',
       'Tally ERP 9 with Invoicing'
     ],
-    'Excel & Productivity': [
-      'Advanced Excel & MIS Reports',
-      'Office Productivity & Data Management'
-    ],
-    'Technical & Design': [
-      'Computer Aided Design (CAD)',
-      'Computer Hardware Troubleshooting',
-      'Graphic Designing',
-      'Hardware & Networking'
-    ],
-    'MS-CIT & Fundamentals': [
-      'MS-CIT Certification',
-      'Computer Fundamentals & Typing'
+    'Design & Multimedia': [
+      'Graphic Designing'
     ]
   }
 };
@@ -177,6 +187,7 @@ const grievanceText = document.getElementById('grievanceText');
 
 const tabCoding = document.getElementById('tabCoding');
 const tabProfessional = document.getElementById('tabProfessional');
+const allCoursesSelect = document.getElementById('allCoursesSelect');
 const trackSelectorContainer = document.getElementById('trackSelectorContainer');
 const courseChipsContainer = document.getElementById('courseChipsContainer');
 const coursePrompt = document.getElementById('coursePrompt');
@@ -291,6 +302,29 @@ function renderCourseChips() {
     const isActive = c === state.course ? 'active' : '';
     return `<button class="chip-btn course-chip ${isActive} px-3 py-1.5 rounded-lg text-xs font-semibold" data-course="${c}">${c}</button>`;
   }).join('');
+
+  if (allCoursesSelect && allCoursesSelect.value !== state.course) {
+    allCoursesSelect.value = state.course;
+  }
+}
+
+// Populate the Specific Course Quick Selection Bar Dropdown
+function populateAllCoursesSelect() {
+  if (!allCoursesSelect) return;
+  let html = '<option value="" disabled>-- Select Your Specific Course --</option>';
+  for (const stream in COURSE_CATALOG) {
+    const streamName = stream === 'coding' ? '💻 Coding & Programming' : '📊 Professional & IT Skills';
+    html += `<optgroup label="${streamName}">`;
+    for (const track in COURSE_CATALOG[stream]) {
+      const courses = COURSE_CATALOG[stream][track];
+      courses.forEach((c) => {
+        html += `<option value="${c}">${c} — (${track})</option>`;
+      });
+    }
+    html += `</optgroup>`;
+  }
+  allCoursesSelect.innerHTML = html;
+  allCoursesSelect.value = state.course;
 }
 
 // Strict Calibrated Review Generation Engine
@@ -394,8 +428,45 @@ function initializeApp() {
     courseChipsContainer.querySelectorAll('.course-chip').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     state.course = btn.dataset.course;
+    if (allCoursesSelect) allCoursesSelect.value = state.course;
     generateCalibratedReview();
   });
+
+  // Specific Course Selection Bar (Direct Dropdown Selector)
+  if (allCoursesSelect) {
+    allCoursesSelect.addEventListener('change', (e) => {
+      const selectedCourse = e.target.value;
+      if (!selectedCourse) return;
+      state.course = selectedCourse;
+      // Search which stream & track this course belongs to
+      for (const st in COURSE_CATALOG) {
+        for (const trk in COURSE_CATALOG[st]) {
+          if (COURSE_CATALOG[st][trk].includes(selectedCourse)) {
+            if (state.stream !== st) {
+              state.stream = st;
+              if (st === 'coding') {
+                tabCoding.classList.add('active');
+                tabProfessional.classList.remove('active');
+                coursePrompt.textContent = "Which coding or programming course did you join?";
+                highlightsCoding.classList.remove('hidden');
+                highlightsProfessional.classList.add('hidden');
+              } else {
+                tabProfessional.classList.add('active');
+                tabCoding.classList.remove('active');
+                coursePrompt.textContent = "Which professional or computer skill course did you join?";
+                highlightsProfessional.classList.remove('hidden');
+                highlightsCoding.classList.add('hidden');
+              }
+            }
+            state.track = trk;
+            renderTracksAndCourses();
+            generateCalibratedReview();
+            return;
+          }
+        }
+      }
+    });
+  }
 
   // Experience Clicks
   document.querySelectorAll('.exp-chip').forEach((btn) => {
@@ -515,6 +586,7 @@ function initializeApp() {
   }
 
   setupPhotoUpload();
+  populateAllCoursesSelect();
   setStream('coding'); // Initial stream
   setRating(5); // Default 5 Stars
 }
